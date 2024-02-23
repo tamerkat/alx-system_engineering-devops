@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-# for loop in bash
-
-FILE="apache-access.log"
-
-awk '{print $1, $9}' "$FILE"
