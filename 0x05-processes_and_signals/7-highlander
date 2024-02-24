@@ -2,7 +2,7 @@
 # This script is displaying 
 # Function to handle SIGTERM signal
 sigterm_handler() {
-    echo -e "I am invincible!!!"
+    echo "I am invincible!!!"
 }
 
 trap 'sigterm_handler' SIGTERM
