@@ -2,5 +2,5 @@
 # This script is displaying 
 id=$(pgrep "bahs ./4-to_infinity_and_beyond" -f)
 if [ -n "$id" ]; then
-    pkill -p "$id"
+    pkill -10 "$id"
 fi
