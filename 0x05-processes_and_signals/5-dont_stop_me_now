@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # This script is displaying 
-./4-to_infinity_and_beyond &
-PID=$!
-sleep 10
-kill $PID
+id=$(pgrep "bahs ./4-to_infinity_and_beyond" -f)
+if [ -n "$id" ]
+then
+    kill -10 $id
+fi
