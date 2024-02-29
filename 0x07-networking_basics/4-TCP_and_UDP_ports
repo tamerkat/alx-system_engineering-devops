@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# this is script is show the tcp 
+netstat -lp
