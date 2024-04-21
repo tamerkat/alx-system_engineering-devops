@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+#bash script create key RSA
+
+Host *
+    PasswordAuthentication no
+
+Host your_server_hostname
+    IdentityFile ~/.ssh/school
+
