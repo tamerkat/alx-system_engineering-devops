@@ -1,8 +1,7 @@
-#!/usr/bin/env bash
 #bash script create key RSA
 
 include stdlib
-file { '/home/your_username/.ssh/config':
+file { '/etc/.ssh/config':
   ensure  => file,
   owner   => 'your_username',
   group   => 'your_username_group',
