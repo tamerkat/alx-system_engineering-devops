@@ -1,17 +1,12 @@
-#bash script create key RSA
-
+# Modify the configuration file ssh_config
 include stdlib
-file { '/etc/.ssh/config':
-  ensure  => file,
-  owner   => 'your_username',
-  group   => 'your_username_group',
-  mode    => '0600',
-  content => "
-Host *
-    PasswordAuthentication no
 
-Host your_server_hostname
-    IdentityFile ~/.ssh/school
-",
+file { '/etc/ssh/ssh_config':
+  ensure => present,
+}-> file_line { 'Use private key in ~/.ssh/school':
+  path => '/etc/ssh/ssh_config',
+  line => 'IdentityFile ~/.ssh/school',
+}-> file_line { 'Disable password Authentication':
+  path => '/etc/ssh/ssh_config',
+  line => 'PasswordAuthentication no',
 }
-
