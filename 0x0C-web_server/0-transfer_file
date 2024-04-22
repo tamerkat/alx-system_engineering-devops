@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 #transfair file to server
-scp -i ~/.ssh/id_rsa_pub some_page.html ubuntu@100.26.17.200:/home/ubuntu
+scp -i ~/.ssh/id_rsa some_page.html ubuntu@100.26.17.200:/home/ubuntu
