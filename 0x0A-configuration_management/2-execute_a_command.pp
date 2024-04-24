@@ -1,4 +1,5 @@
-# kill process
+# Execute a command using puppet
+
 exec { 'pkill killmenow':
-    path	=> '/usr/bin:/usr/sbin:/bin'
+  command => '/usr/bin/pkill -f /killmenow'
 }
