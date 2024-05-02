@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 #debugging the error
-rm -rf etc/nginx
+rm -rf etc/nginx/sites-enabled/default
 sudo apt install nginx
-service nginx restart
+sudo service nginx restart
