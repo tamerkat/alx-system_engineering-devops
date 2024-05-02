@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 #debugging the error
-rm /etc/nginx/sites-enabled/mysite.com
-ln -s /etc/nginx/sites-available/mysite.com /etc/nginx/sites-enabled/mysite.com
+rm /etc/nginx/sites-enabled/default
+ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 sudo service nginx restart
