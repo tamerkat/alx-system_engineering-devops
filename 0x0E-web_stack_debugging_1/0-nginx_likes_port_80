@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#debugging the error
+rm -rf etc/nginx
+sudo apt install nginx
+sudo service nginx restart
