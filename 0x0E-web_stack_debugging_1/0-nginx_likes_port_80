@@ -2,4 +2,4 @@
 #debugging the error
 rm -rf etc/nginx
 sudo apt install nginx
-sudo service nginx restart
+service nginx restart
