@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 #debugging the error
-rm -rf etc/nginx/sites-enabled/default
-sudo apt install nginx
+rm /etc/nginx/sites-enabled/mysite.com
+ln -s /etc/nginx/sites-available/mysite.com /etc/nginx/sites-enabled/mysite.com
 sudo service nginx restart
