@@ -1,15 +1,48 @@
 #!/usr/bin/env bash
-# Perform nginx server install and config
+#transfair file to server
 
-sudo apt-get -y update
-sudo apt-get -y install nginx
+sudo apt-det -y update
+sudo apt-det -y install nginx
+
 echo "Hello World!" | sudo tee /var/www/html/index.html
 
-# configure nginx server
-default_sites="/etc/nginx/sites-available/default"
-location=$(grep -Fn location $default_sites | head -1 | cut -d":" -f1)
-location_data="\\\tlocation /redirect_me {\n\t\treturn 301 https://youtu.be/mlUOUncSaTk;\n\t}\n\n"
+config_server=/
+"server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
 
-## Update default site to redirect and start nginx server
-sudo sed -i "${location}i ${location_data}" ${default_sites}
-sudo service nginx start
+
+	root /var/www/html;
+
+	index index.html index.htm index.nginx-debian.html;
+
+	server_name _;
+	
+	add_header X-Served-By "hostname";
+
+	error_page 404 /404.html;
+
+	location /redirect_me {
+		return 301 https://youtu.be/mlUOUncSaTk;
+	}
+
+
+	location / {
+		try_files $uri $uri/ =404;
+	}
+}
+"
+
+
+# default_site="/etc/nginx/sites-available/default"
+# location=$(grep -Fn location $default_sites | head -1 | cut -d":" -f1)
+# location_data="\\\tlocation /redirect_me {\n\t\treturn 301 https://youtu.be/mlUOUncSaTk;\n\t}\n\n"
+
+# sudo sed -i "${location}i ${location_data}" ${default_sites}
+
+bash -c "echo -e '$config_server' > /etc/nginx/sites-enabled/default"
+
+if [ $"pgrep -c nginx" -le 0 ]; then
+    sudo service nginx start 
+else
+    sudo service nginx restart
