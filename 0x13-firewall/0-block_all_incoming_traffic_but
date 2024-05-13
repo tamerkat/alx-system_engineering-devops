@@ -11,13 +11,10 @@ sudo ufw default allow outgoing
 sudo ufw app list
 sudo ufw allow OpenSSH
 sudo ufw allow ssh
-sudo ufw allow 22
-sudo ufw allow 80
-sudo ufw allow 443
-sudo ufw allow 2222
+sudo ufw allow 22/tcp
+sudo ufw allow 80/tcp
+sudo ufw allow 443/tcp
+sudo ufw allow 2222/tcp
 sudo ufw show added
-sudo ufw enable
-sudo ufw allow 6000:6007/tcp
-sudo ufw allow 6000:6007/udp
 
 sudo service ufw restart
