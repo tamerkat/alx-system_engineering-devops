@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 sudo apt-get -y update
+sudo apt-get install ufw
 
 sudo echo "IPV6=yes" | sudo tee /etc/default/ufw
 
