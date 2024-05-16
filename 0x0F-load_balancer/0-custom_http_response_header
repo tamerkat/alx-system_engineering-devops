@@ -2,30 +2,36 @@
 sudo apt-get -y update
 sudo apt-get -y install nginx
 
-echo "Hello World" | sudo tee user/share/nginx/html/index.html
-echo "Hello World" | sudo tee var/www/html/index*html
+sudo ufw allow 'Nginx HTTP'
+
+echo "Hello World" | sudo tee var/www/html/index.html
+echo "Ceci n'est pas une page" | sudo tee var/www/html/404.html
+
+sudo service nginx start
 
 SERVER_CONFIG=/
 "server{
     listen 80 default_server;
     listen [::]:80 default_server;
 
-    root var/www/html
+    root var/www/html;
 
-    index index.html index.htm
+    server_name _;
 
-    add_header X-Served-By;
+    index index.html index.htm index.nginx-debian.html;
+
+    add_header X-Served-By "hostname";
 
     error_page 404 /404.html;
+
+    location /redirect_me {
+        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+    }
 
     location / {
         try_files $uri $uri/ =404;
     }
 }" 
-bash -c "echo -e '$SERVER_CONFIG' > etc/nginx/sites-enabled/default"
+bash -c "echo -e '$SERVER_CONFIG' > etc/nginx/sites-available/default"
 
-if [ "$(pgrep -c nginx)" -le 0 ]; then
-	service nginx start
-else
-	service nginx restart
-fi
+sudo service nginx restart
