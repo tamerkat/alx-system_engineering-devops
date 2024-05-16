@@ -1,0 +1,25 @@
+1-install_load_balancer
+
+sudo apt-get update
+sudp install -y haproxy
+
+sudo touch /etc/haproxy/haproxy.cfg
+
+balance="/
+frontend haproxy_balancer
+    bind *:80
+    mode http
+    default_backend webservers
+    
+backend webservers
+    balance roundrobin
+    server 26071-web-01 100.26.17.200:80 check
+    server 26071-web-02 54.157.186.19:80 check
+"
+sudo systemctl start haproxy
+sudo systemctl enable haproxy
+sudo apt-get -y install software-properties-common
+sudo add-apt-repository -y ppa:vbernat/haproxy-2.5
+sudo systemctl status haproxy
+
+sudo service haproxy restart
