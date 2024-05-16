@@ -4,9 +4,12 @@ sudo apt-get update
 sudo apt-get install -y nginx
 
 mkdir -p /var/www/html
+chmod u+x /var/www/html
 touch /var/www/html/index.html
+chmod +x /var/www/html/index.html
 echo "Hello World" > /var/www/html/index.html
 touch /var/www/html/404.html
+chmod +x /var/www/html/404.html
 echo "Ceci n'est pas une page" > /var/www/html/404.html
 
 printf %s "server {
