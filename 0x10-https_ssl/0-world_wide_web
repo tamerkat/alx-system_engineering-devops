@@ -9,12 +9,11 @@ printer (){
 }
 
 info(){
-    domain=$1;
-    subdomain=$2;
-    Answar=$(dig "${domain}" | grep "ANSWER SECTION" | awk 'NR>1');
-    type=$( echo "$(Answar)" | awk '{print $4}');
-    distenation=$( echo "$(Answar)" | awk '{print $5}');
-    displayResults "$subdomain" "$type" "$distenation";
+    FQDN="$1"; SUBDOMAIN="$2";
+    ANSWER=$(dig "${FQDN}" | grep -A1 'ANSWER SECTION:' | awk 'NR>1');
+    RECORD_TYPE=$(echo "${ANSWER}" | awk '{print $4}');
+    DESTINATION=$(echo "${ANSWER}" | awk '{print $5}');
+    displayResults "$SUBDOMAIN" "$RECORD_TYPE" "$DESTINATION";
 }
 
 
