@@ -19,17 +19,11 @@ getInfo () {
     displayResults "$SUBDOMAIN" "$RECORD_TYPE" "$DESTINATION";
 }
 
-getSubs () {
+# check
+if ( -z "subdomain" ); then
     for sub in "${subs[@]}"; do
-        getInfo "${sub}.${domain}" "${sub}";
+        info "${domain}" "${sub}"
     done
-}
-
-# Check if subdomains are proovided
-if [ "$#" -eq 1 ]; then
-    getSubs
-    exit 0;
+else
+    info "${domain}" "${subdomain}"
 fi
-
-# display the specific domain if no other info is provided
-getInfo "${subdomain}.${domain}" "${subdomain}";
