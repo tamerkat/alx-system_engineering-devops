@@ -17,10 +17,14 @@ info(){
 }
 
 
-if ( -z "subdomain" ); then
+getSubs () {
     for sub in "${subs[@]}"; do
-        info "${domain}" "{$sub}";
+        getInfo "${sub}.${domain}" "${sub}";
     done
-else
-    info "${domain}" "${subdomain}";
+}
+
+if [ "$#" -eq 1 ]; then
+    getSubs
+    exit 0;
 fi
+getInfo "${subdomain}.${domain}" "${subdomain}";
