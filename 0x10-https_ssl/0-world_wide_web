@@ -19,7 +19,7 @@ info(){
 
 getSubs () {
     for sub in "${subs[@]}"; do
-        getInfo "${sub}.${domain}" "${sub}";
+        info "${sub}.${domain}" "${sub}";
     done
 }
 
@@ -27,4 +27,4 @@ if [ "$#" -eq 1 ]; then
     getSubs
     exit 0;
 fi
-getInfo "${subdomain}.${domain}" "${subdomain}";
+info "${subdomain}.${domain}" "${subdomain}";
