@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+domain="$1";
+subdomain="$2";
+subs=("www" "web-01" "web-02" "lb-01");
+
+printer (){
+    echo -e "The subdomain $1 is a $2 record and points to $3"
+}
+
+info(){
+    domain=$1;
+    subdomain=$2;
+    Answar=$(dig "${domain}" | grep "ANSWER SECTION" | awk 'NR>1')
+    tyoe=$( echo "$(Answar)" | awk {print $4})
+}
+
+
+if ( -z "subdomain" ); then
+    for sub in "${subs[@]}"; do
+        info $domain $sub
+    done
+else
+    info $domain $subdomain
+fi
