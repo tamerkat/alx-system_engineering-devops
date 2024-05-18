@@ -11,16 +11,17 @@ printer (){
 info(){
     domain=$1;
     subdomain=$2;
-    Answar=$(dig "${domain}" | grep "ANSWER SECTION" | awk 'NR>1')
-    type=$( echo "$(Answar)" | awk {print $4})
-    displayResults "$subdomain" "$type"
+    Answar=$(dig "${domain}" | grep "ANSWER SECTION" | awk 'NR>1');
+    type=$( echo "$(Answar)" | awk '{print $4}');
+    distenation=$( echo "$(Answar)" | awk '{print $5}');
+    displayResults "$subdomain" "$type" "$distenation";
 }
 
 
 if ( -z "subdomain" ); then
     for sub in "${subs[@]}"; do
-        info "${sub}"."${domain}" $"{sub}"
+        info "${sub}"."${domain}" $"{sub}";
     done
 else
-    info "${subdomain}"."${domain}" "${subdomain}"
+    info "${subdomain}"."${domain}" "${subdomain}";
 fi
