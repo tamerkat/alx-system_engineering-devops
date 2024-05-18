@@ -19,8 +19,8 @@ info(){
 
 if ( -z "subdomain" ); then
     for sub in "${subs[@]}"; do
-        info "${sub}"."${domain}" "${sub}";
+        info "${domain}" "{$sub}";
     done
 else
-    info "${subdomain}"."${domain}" "${subdomain}";
+    info "${domain}" "${subdomain}";
 fi
