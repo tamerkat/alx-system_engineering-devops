@@ -1,30 +1,29 @@
 #!/usr/bin/env bash
-domain="$1"; subdomain="$2";
-subs=("www" "web-01" "web-02" "lb-01")
 
-printer(){
+domain="$1"; subdomain="$2";
+subs=("www" "lb-01" "web-01" "web-02")
+
+displayResults () {
     echo -e "The subdomain $1 is a $2 record and points to $3"
 }
-info(){
+
+getInfo () {
     FQDN="$1"; SUBDOMAIN="$2";
     ANSWER=$(dig "${FQDN}" | grep -A1 'ANSWER SECTION:' | awk 'NR>1');
     RECORD_TYPE=$(echo "${ANSWER}" | awk '{print $4}');
     DESTINATION=$(echo "${ANSWER}" | awk '{print $5}');
-    printer "$SUBDOMAIN" "$RECORD_TYPE" "$DESTINATION";
+    displayResults "$SUBDOMAIN" "$RECORD_TYPE" "$DESTINATION";
 }
-
 
 getSubs () {
     for sub in "${subs[@]}"; do
-        info "${sub}.${domain}" "${sub}";
+        getInfo "${sub}.${domain}" "${sub}";
     done
 }
 
-# Check if subdomains are proovided
 if [ "$#" -eq 1 ]; then
     getSubs
     exit 0;
 fi
 
-# display the specific domain if no other info is provided
-info "${subdomain}.${domain}" "${subdomain}";
+getInfo "${subdomain}.${domain}" "${subdomain}";
