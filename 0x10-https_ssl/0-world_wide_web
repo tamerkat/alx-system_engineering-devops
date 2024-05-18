@@ -13,18 +13,14 @@ info(){
     ANSWER=$(dig "${FQDN}" | grep -A1 'ANSWER SECTION:' | awk 'NR>1');
     RECORD_TYPE=$(echo "${ANSWER}" | awk '{print $4}');
     DESTINATION=$(echo "${ANSWER}" | awk '{print $5}');
-    displayResults "$SUBDOMAIN" "$RECORD_TYPE" "$DESTINATION";
+    printer "$SUBDOMAIN" "$RECORD_TYPE" "$DESTINATION";
 }
 
 
-getSubs () {
+if ( -z "subdomain" ); then
     for sub in "${subs[@]}"; do
-        getInfo "${sub}.${domain}" "${sub}";
+        info "${sub}"."${domain}" "${sub}";
     done
-}
-
-if [ "$#" -eq 1 ]; then
-    getSubs
-    exit 0;
+else
+    info "${subdomain}"."${domain}" "${subdomain}";
 fi
-getInfo "${subdomain}.${domain}" "${subdomain}";
