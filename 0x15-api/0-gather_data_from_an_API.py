@@ -9,7 +9,8 @@ import sys
 if __name__ == "__main__":
     users = requests.get('https://jsonplaceholder.typicode.com/users')
 
-    usr_id = sys.argv[1]
+    usr_id = int(sys.argv[1])
+    EMPLOYEE_NAME = None
 
     for user in users.json():
         if user.get('id') == usr_id:
@@ -23,7 +24,7 @@ if __name__ == "__main__":
     url = 'https://jsonplaceholder.typicode.com/todos'
     todo = requests.get(url)
 
-    for task in todo:
+    for task in todo.json():
         if task.get('completed') == "True":
             NUMBER_OF_DONE_TASKS += 1
             TOTAL_NUMBER_OF_TASKS += 1
@@ -32,8 +33,8 @@ if __name__ == "__main__":
             TOTAL_NUMBER_OF_TASKS += 1
             TASK_TITLE.append(task.get('title'))
 
-    avrage = NUMBER_OF_DONE_TASKS / TOTAL_NUMBER_OF_TASKS
-    print("Employee {} is done with tasks({}):".format(EMPLOYEE_NAME, avrage))
+    print("Employee {} is done with tasks({}/{}):"
+          .format(EMPLOYEE_NAME, NUMBER_OF_DONE_TASKS, TOTAL_NUM_OF_TASKS))
 
     for task in TASK_TITLE:
         print("\t {}".format(task))
