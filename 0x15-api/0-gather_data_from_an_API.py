@@ -14,7 +14,7 @@ if __name__ == "__main__":
 
     for user in users.json():
         if user.get('id') == usr_id:
-            EMPLOYEE_NAME = users['name']
+            EMPLOYEE_NAME = (user.get('name'))
             break
 
     NUMBER_OF_DONE_TASKS = 0
@@ -31,7 +31,6 @@ if __name__ == "__main__":
             TASK_TITLE.append(task.get('title'))
         else:
             TOTAL_NUMBER_OF_TASKS += 1
-            TASK_TITLE.append(task.get('title'))
 
     print("Employee {} is done with tasks({}/{}):"
           .format(EMPLOYEE_NAME, NUMBER_OF_DONE_TASKS, TOTAL_NUM_OF_TASKS))
