@@ -30,7 +30,6 @@ if __name__ == "__main__":
 
             if task.get('completed') == "True":
                 NUMBER_OF_DONE_TASKS += 1
-                TOTAL_NUMBER_OF_TASKS += 1
                 TASK_TITLE.append(task.get('title'))
 
     print("Employee {} is done with tasks({}/{}):"
