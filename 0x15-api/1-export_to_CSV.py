@@ -34,12 +34,14 @@ def shown():
         print("\t {}".format(task))
 
     filename = "{}.csv".format(argv[1])
-    with open(filename, mode="w") as fc:
-        fcw = csv.writer(fc)
-        fcw.writerow(["USER_ID", "USERNAME",
-                      "TASK_COMPLETED_STATUS", "TASK_TITLE"])
-        fcw.writerows(TASK_TITLE)
+    with open(filename, mode="w") as csvfile:
+        for todo in todos:
+            complete = todo.get('completed')
+            title = todo.get('title')
+            user_name = users.get('username')
+            csvfile.write('"{}","{}","{}","{}"\n'.format(
+                user, user_name, complete, title))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     shown()
