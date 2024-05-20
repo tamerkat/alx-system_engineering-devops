@@ -24,13 +24,14 @@ def shown():
                 TASK_TITLE.append(todo.get('title'))
 
     filename = "{}.csv".format(argv[1])
-    with open(filename, mode="w") as csvfile:
-        for user in users:
-            complete = user.get('completed')
-            title = user.get('title')
-
-            csvfile.write('"{}","{}","{}","{}"\n'.format(
-                argv[1], USERNAME, complete, title))
+    with open(filename, mode="w") as cf:
+        for todo in todos:
+            complete = todo.get('completed')
+            title = todo.get('title')
+        csvfile = csv.writer(cf)
+        csvfile.writerow('"{}","{}","{}","{}"\n'.format(
+            argv[1], USERNAME, complete, title))
+        csvfile.writerows(TASK_TITLE)
 
 
 if __name__ == "__main__":
