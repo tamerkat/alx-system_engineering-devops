@@ -26,9 +26,11 @@ def shown():
     filename = "{}.csv".format(argv[1])
     with open(filename, mode="w") as cf:
         csvfile = csv.writer(cf)
-        csvfile.writerow('"{}","{}","{}","{}"\n'.format(
-            argv[1], USERNAME, todo['completed'], todo['title']))
-        csvfile.writerows(TASK_TITLE)
+        csvfile.writerow(["USER_ID", "USERNAME",
+                         "TASK_COMPLETED_STATUS", "TASK_TITLE"])
+        for todo in todos:
+            csvfile.writerow([argv[1], USERNAME,
+                             todo['completed'], todo['title']])
 
 
 if __name__ == "__main__":
