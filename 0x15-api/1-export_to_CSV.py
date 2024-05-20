@@ -29,7 +29,7 @@ def shown():
             complete = todo.get('completed')
             title = todo.get('title')
             csvfile.write('"{}","{}","{}","{}"\n'.format(
-                user, USERNAME, complete, title))
+                argv[1], USERNAME, complete, title))
 
 
 if __name__ == "__main__":
