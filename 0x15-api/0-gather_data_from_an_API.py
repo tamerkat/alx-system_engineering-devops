@@ -12,7 +12,7 @@ if __name__ == "__main__":
 
     usr_id = sys.argv[1]
 
-    for user in users:
+    for user in users.json():
         if user['id'] == usr_id:
             EMPLOYEE_NAME = users['name']
             break
