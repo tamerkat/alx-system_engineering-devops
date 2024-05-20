@@ -29,8 +29,10 @@ def shown():
             user = todo.get('userId')
             complete = todo.get('completed')
             title = todo.get('title')
-            csvfile.write('"{}","{}","{}","{}"\n'.format(
-                argv[1], USERNAME, complete, title))
+            cf = csv.writer(csvfile)
+            cf.writerow('"{}","{}","{}","{}"\n'.format(
+                user, USERNAME, complete, title))
+            cf.writerows(TASK_TITLE)
 
 
 if __name__ == "__main__":
