@@ -7,7 +7,7 @@ import sys
 import urllib
 
 if __name__ == "__main__":
-    url = 'https://jsonplaceholder.typicode.com'
+    url = 'https://jsonplaceholder.typicode.com/users'
     users = urllib.request.urlopen(url)
 
     usr_id = sys.argv[1]
