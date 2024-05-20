@@ -4,7 +4,7 @@ display
 '''
 
 import urllib.request
-import sys
+from sys import arvg
 
 if __name__ == "__main__":
     url = 'https://jsonplaceholder.typicode.com'
