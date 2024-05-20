@@ -26,8 +26,8 @@ def shown():
     filename = "{}.csv".format(argv[1])
     with open(filename, mode="w") as csvfile:
         for user in users:
-            complete = todo.get('completed')
-            title = todo.get('title')
+            complete = user.get('completed')
+            title = user.get('title')
 
             csvfile.write('"{}","{}","{}","{}"\n'.format(
                 argv[1], USERNAME, complete, title))
