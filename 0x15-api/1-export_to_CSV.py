@@ -20,8 +20,8 @@ def shown():
     todos = requests.get("http://jsonplaceholder.typicode.com/todos")
     for todo in todos.json():
         if todo.get('userId') == int(argv[1]):
-            TASK_TITLE.append(todo.get('title'),
-                              todo.get('completed'))
+            TASK_TITLE.append(todo.get('completed'),
+                              todo.get('title'))
 
     filename = "{}.csv".format(argv[1])
     with open(filename, mode="w") as cf:
