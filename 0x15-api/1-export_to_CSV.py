@@ -20,17 +20,15 @@ def shown():
     todos = requests.get("http://jsonplaceholder.typicode.com/todos")
     for todo in todos.json():
         if todo.get('userId') == int(argv[1]):
-            if todo.get('completed') is True:
-                TASK_TITLE.append(todo.get('title'))
+            TASK_TITLE.append(todo.get('title'),
+                              todo.get('completed'))
 
     filename = "{}.csv".format(argv[1])
     with open(filename, mode="w") as cf:
         csvfile = csv.writer(cf)
-        csvfile.writerow(["USER_ID", "USERNAME",
-                         "TASK_COMPLETED_STATUS", "TASK_TITLE"])
-        for todo in todos:
-            csvfile.writerow([argv[1], USERNAME,
-                             todo['completed'], todo['title']])
+        csvfile.writerow(["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
+        for task in TASK_TITLE:
+            csvfile.writerow([argv[1], USERNAME, task[0], task[1]])
 
 
 if __name__ == "__main__":
