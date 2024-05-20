@@ -25,12 +25,9 @@ def shown():
 
     filename = "{}.csv".format(argv[1])
     with open(filename, mode="w") as cf:
-        for todo in todos:
-            complete = todo.get('completed')
-            title = todo.get('title')
         csvfile = csv.writer(cf)
         csvfile.writerow('"{}","{}","{}","{}"\n'.format(
-            argv[1], USERNAME, complete, title))
+            argv[1], USERNAME, todo['completed'], todo['title']))
         csvfile.writerows(TASK_TITLE)
 
 
