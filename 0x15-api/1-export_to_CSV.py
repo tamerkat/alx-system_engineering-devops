@@ -25,14 +25,12 @@ def shown():
 
     filename = "{}.csv".format(argv[1])
     with open(filename, mode="w") as csvfile:
-        for todo in todos:
-            user = todo.get('userId')
+        for user in users:
             complete = todo.get('completed')
             title = todo.get('title')
-            cf = csv.writer(csvfile)
-            cf.writerow('"{}","{}","{}","{}"\n'.format(
-                user, USERNAME, complete, title))
-            cf.writerows(TASK_TITLE)
+
+            csvfile.write('"{}","{}","{}","{}"\n'.format(
+                argv[1], USERNAME, complete, title))
 
 
 if __name__ == "__main__":
