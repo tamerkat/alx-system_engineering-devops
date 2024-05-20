@@ -3,8 +3,8 @@
 display
 '''
 
-import urllib
 import sys
+import urllib
 
 if __name__ == "__main__":
     url = 'https://jsonplaceholder.typicode.com'
