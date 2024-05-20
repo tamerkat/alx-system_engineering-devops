@@ -3,7 +3,7 @@
 display
 '''
 
-import urllib.request
+import urllib
 from sys import arvg
 
 if __name__ == "__main__":
