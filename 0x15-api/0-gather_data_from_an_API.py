@@ -21,7 +21,7 @@ if __name__ == "__main__":
     TOTAL_NUMBER_OF_TASKS = 0
     TASK_TITLE = []
 
-    url = 'https://jsonplaceholder.typicode.com/todos'
+    url = 'https://jsonplaceholder.typicode.com/todos/1'
     todo = requests.get(url)
 
     for task in todo.json():
