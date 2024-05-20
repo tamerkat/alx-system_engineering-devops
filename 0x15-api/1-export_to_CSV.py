@@ -2,9 +2,10 @@
 '''
 Write a Python script
 '''
+import csv
 import requests
 from sys import argv
-import csv
+
 
 def shown():
     """return API data"""
@@ -32,12 +33,13 @@ def shown():
     for task in TASK_TITLE:
         print("\t {}".format(task))
 
-
     filename = "{}.csv".format(argv[1])
     with open(filename, mode="w") as fc:
-        fc_writer = csv.writer(fc)
-        fc_writer.writerow(["USER_ID","USERNAME","TASK_COMPLETED_STATUS","TASK_TITLE"])
-        fc_writer.writerows(TASK_TITLE)
+        fcw = csv.writer(fc)
+        fcw.writerow(["USER_ID", "USERNAME",
+                      "TASK_COMPLETED_STATUS", "TASK_TITLE"])
+        fcw.writerows(TASK_TITLE)
 
-if __name__ == "__main__":
+
+if __name__ == '__main__':
     shown()
