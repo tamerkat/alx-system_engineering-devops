@@ -3,8 +3,8 @@
 display
 '''
 
-import sys
 import requests
+import sys
 
 
 def show():
